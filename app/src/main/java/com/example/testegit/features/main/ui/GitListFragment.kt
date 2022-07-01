@@ -47,8 +47,6 @@ class GitListFragment : BaseFragment<FragmentGitListBinding>() {
 
         binding?.apply {
 
-            Picasso.get().load("https://avatars.githubusercontent.com/u/32689599?v=4").placeholder(R.drawable.loading).into(imageTest)
-
             listGitAdapter.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {

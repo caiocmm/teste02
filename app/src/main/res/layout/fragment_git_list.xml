@@ -8,12 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageTest"
-            tools:src="@drawable/logo"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"/>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_git_adapter"
             android:layout_width="match_parent"
