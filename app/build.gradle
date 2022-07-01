@@ -1,0 +1,100 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.example.testegit"
+        minSdk 22
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+
+        debug {
+            debuggable = true
+            minifyEnabled false
+            buildConfigField "String", "BASE_URL", "\"https://api.github.com/\""
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+    testOptions {
+        animationsDisabled = true
+
+        unitTests {
+            returnDefaultValues = true
+            includeAndroidResources = true
+            all {
+                useJUnitPlatform()
+                testLogging {
+                    events "passed", "skipped", "failed"
+                    outputs.upToDateWhen { false }
+                    showStandardStreams = true
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+
+    implementation project(":commons")
+
+    def dependencies = rootProject.ext.dependencies
+    implementation dependencies.kotlin
+    implementation dependencies.navigationComponent
+    implementation dependencies.navigationComponentKtx
+    implementation dependencies.coroutines
+    implementation dependencies.retrofit
+    implementation dependencies.converterGson
+    implementation dependencies.httpInterceptor
+    implementation dependencies.androidxCore
+    implementation dependencies.androidxCompat
+    implementation dependencies.googleMaterial
+    implementation dependencies.androidxConstraintLayout
+    implementation dependencies.picasso
+    implementation dependencies.insertKoin
+    implementation dependencies.roomRuntime
+    kapt dependencies.roomCompiler
+    implementation dependencies.roomKtx
+
+    testImplementation dependencies.mockk
+    testImplementation dependencies.junit
+    testImplementation dependencies.jupiterApi
+    testImplementation dependencies.jupiterParams
+    testImplementation dependencies.jupiterEngine
+    testImplementation dependencies.jupiterVintageEngine
+    testImplementation dependencies.koinTest
+    testImplementation dependencies.koinTestJunit
+    testImplementation dependencies.androidxCoreTesting
+    testImplementation dependencies.assertjCore
+    testImplementation dependencies.robolectric
+    testImplementation dependencies.androidxTestCore
+    testImplementation dependencies.kotlinxCoroutinesTest
+}
